@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+        width: 200px;
+        height: 100px;
+        background-color: white;
+        margin: auto;}
+        .bu{
+        float: right;
+        height: 36.67px;
+        }
+        li {
+        list-style: none;
+        transform: translate(-40px);
+        background-color: white;
+        }
+        a {
+        float: right;
+        text-decoration: none;
+        color: black;
+        
+        }
+        a:hover {
+        color: red;
+        }
+        .li0 {
+        color: red;
+        }
+        .li1 {
+        color: green;
+        }
+        .li2 {
+        color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <textarea id="in" ></textarea>
+    <button class="bu" id="anliu" name="y">发布</button>
+    <br>
+    <input type="radio" name="x" id="red">红
+    <input type="radio" name="x" id="green">绿
+    <input type="radio" name="x" id="blue">蓝
+    <ul>
+    
+    </ul>
+    </div>
+    <script>
+    document.querySelector('#in').value="评价";
+    let wz=document.querySelector('#in');//获取文本域
+    let an=document.querySelector('#anliu');//获取发布按钮
+    let ul=document.querySelector('ul');//获取留言的ul
+    let ch=document.querySelectorAll('input')//颜色选择按钮
+    wz.onclick=function(){
+    document.querySelector('#in').value=""
+    }//点击文本框后清除默认文字
+    an.onclick=function(){
+    if(document.querySelector('#in').value==""||document.querySelector('#in').value=="评价"){
+    alert("你还没有输入文字哦");}
+    else
+    {let li=document.createElement("li"); //创建li存储留言
+    if(ch[0].checked==true) {li.className='li0';}
+    else if(ch[1].checked){li.className='li1';}
+    else li.className='li2';
+     li.innerHTML=document.querySelector('#in').value+"<a href='javascript:;'>删除</a>";
+     ul.insertBefore(li,ul.children[0]);//插入留言
+     document.querySelector('#in').value="";//留言后删除文本框中文字
+     let susan=document.querySelectorAll('a');
+     for(var i=0;i<susan.length;i++){
+     susan[i].onclick=function() {
+     ul.removeChild(this.parentNode);//删除
+
+    }
+    }
+    }
+    }
+    </script>
+    
+</body>
+</html>
